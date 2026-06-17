@@ -81,10 +81,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "AuraAlign is a mental health NGO creating a mentally healthier India through awareness, education, support and community action." },
       { name: "author", content: "AuraAlign" },
       { property: "og:title", content: "AuraAlign Mental Health Initiative" },
-      { property: "og:description", content: "Help, hope and healing for everyone. Join our mental wellness movement." },
+      { property: "og:description", content: "AuraAlign is a mental health NGO creating a mentally healthier India through awareness, education, support and community action." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@AuraAlign" },
+      { name: "twitter:title", content: "AuraAlign Mental Health Initiative" },
+      { name: "twitter:description", content: "AuraAlign is a mental health NGO creating a mentally healthier India through awareness, education, support and community action." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/680083d5-8ff6-4480-bf3f-fb063e34afe2/id-preview-d5fc8b25--f46535b1-79f6-491a-a601-433cfd1b891b.lovable.app-1781714959754.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/680083d5-8ff6-4480-bf3f-fb063e34afe2/id-preview-d5fc8b25--f46535b1-79f6-491a-a601-433cfd1b891b.lovable.app-1781714959754.png" },
     ],
     links: [
       {
