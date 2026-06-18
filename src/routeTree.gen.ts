@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as DonateRouteImport } from './routes/donate'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -30,6 +31,11 @@ const ProgramsRoute = ProgramsRouteImport.update({
   path: '/programs',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -44,6 +50,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/donate': typeof DonateRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/volunteer': typeof VolunteerRoute
@@ -51,6 +58,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/donate': typeof DonateRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/volunteer': typeof VolunteerRoute
@@ -59,21 +67,36 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/donate': typeof DonateRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/volunteer': typeof VolunteerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/programs' | '/resources' | '/volunteer'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/programs'
+    | '/resources'
+    | '/volunteer'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/programs' | '/resources' | '/volunteer'
-  id: '__root__' | '/' | '/about' | '/programs' | '/resources' | '/volunteer'
+  to: '/' | '/about' | '/donate' | '/programs' | '/resources' | '/volunteer'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/donate'
+    | '/programs'
+    | '/resources'
+    | '/volunteer'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  DonateRoute: typeof DonateRoute
   ProgramsRoute: typeof ProgramsRoute
   ResourcesRoute: typeof ResourcesRoute
   VolunteerRoute: typeof VolunteerRoute
@@ -102,6 +125,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProgramsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -122,6 +152,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  DonateRoute: DonateRoute,
   ProgramsRoute: ProgramsRoute,
   ResourcesRoute: ResourcesRoute,
   VolunteerRoute: VolunteerRoute,
