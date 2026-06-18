@@ -1,7 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { ArrowLeft, Lightbulb } from "lucide-react";
 import { PageShell, Section } from "@/components/PageShell";
-import { STORY_BY_SLUG } from "@/data/stories";
+import { STORY_BY_SLUG, type Story } from "@/data/stories";
 
 export const Route = createFileRoute("/stories/$slug")({
   head: ({ params }) => {
@@ -39,7 +39,7 @@ export const Route = createFileRoute("/stories/$slug")({
 });
 
 function StoryPage() {
-  const { story } = Route.useLoaderData();
+  const { story } = Route.useLoaderData() as { story: Story };
   return (
     <PageShell>
       <section className="bg-[var(--aura-deep)] text-white">

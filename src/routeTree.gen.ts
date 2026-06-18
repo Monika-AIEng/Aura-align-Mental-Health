@@ -18,6 +18,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as StoriesIndexRouteImport } from './routes/stories.index'
+import { Route as StoriesSlugRouteImport } from './routes/stories.$slug'
 
 const VolunteerRoute = VolunteerRouteImport.update({
   id: '/volunteer',
@@ -64,6 +65,11 @@ const StoriesIndexRoute = StoriesIndexRouteImport.update({
   path: '/stories/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StoriesSlugRoute = StoriesSlugRouteImport.update({
+  id: '/stories/$slug',
+  path: '/stories/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -74,6 +80,7 @@ export interface FileRoutesByFullPath {
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/volunteer': typeof VolunteerRoute
+  '/stories/$slug': typeof StoriesSlugRoute
   '/stories/': typeof StoriesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +92,7 @@ export interface FileRoutesByTo {
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/volunteer': typeof VolunteerRoute
+  '/stories/$slug': typeof StoriesSlugRoute
   '/stories': typeof StoriesIndexRoute
 }
 export interface FileRoutesById {
@@ -97,6 +105,7 @@ export interface FileRoutesById {
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/volunteer': typeof VolunteerRoute
+  '/stories/$slug': typeof StoriesSlugRoute
   '/stories/': typeof StoriesIndexRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +119,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/resources'
     | '/volunteer'
+    | '/stories/$slug'
     | '/stories/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +131,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/resources'
     | '/volunteer'
+    | '/stories/$slug'
     | '/stories'
   id:
     | '__root__'
@@ -132,6 +143,7 @@ export interface FileRouteTypes {
     | '/programs'
     | '/resources'
     | '/volunteer'
+    | '/stories/$slug'
     | '/stories/'
   fileRoutesById: FileRoutesById
 }
@@ -144,6 +156,7 @@ export interface RootRouteChildren {
   ProgramsRoute: typeof ProgramsRoute
   ResourcesRoute: typeof ResourcesRoute
   VolunteerRoute: typeof VolunteerRoute
+  StoriesSlugRoute: typeof StoriesSlugRoute
   StoriesIndexRoute: typeof StoriesIndexRoute
 }
 
@@ -212,6 +225,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StoriesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stories/$slug': {
+      id: '/stories/$slug'
+      path: '/stories/$slug'
+      fullPath: '/stories/$slug'
+      preLoaderRoute: typeof StoriesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -224,6 +244,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProgramsRoute: ProgramsRoute,
   ResourcesRoute: ResourcesRoute,
   VolunteerRoute: VolunteerRoute,
+  StoriesSlugRoute: StoriesSlugRoute,
   StoriesIndexRoute: StoriesIndexRoute,
 }
 export const routeTree = rootRouteImport
