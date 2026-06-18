@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as VolunteerRouteImport } from './routes/volunteer'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ProgramsRouteImport } from './routes/programs'
+import { Route as EmergencyRouteImport } from './routes/emergency'
 import { Route as DonateRouteImport } from './routes/donate'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
@@ -30,6 +31,11 @@ const ResourcesRoute = ResourcesRouteImport.update({
 const ProgramsRoute = ProgramsRouteImport.update({
   id: '/programs',
   path: '/programs',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EmergencyRoute = EmergencyRouteImport.update({
+  id: '/emergency',
+  path: '/emergency',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DonateRoute = DonateRouteImport.update({
@@ -58,6 +64,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/emergency': typeof EmergencyRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/volunteer': typeof VolunteerRoute
@@ -67,6 +74,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/emergency': typeof EmergencyRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/volunteer': typeof VolunteerRoute
@@ -77,6 +85,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/contact': typeof ContactRoute
   '/donate': typeof DonateRoute
+  '/emergency': typeof EmergencyRoute
   '/programs': typeof ProgramsRoute
   '/resources': typeof ResourcesRoute
   '/volunteer': typeof VolunteerRoute
@@ -88,6 +97,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/donate'
+    | '/emergency'
     | '/programs'
     | '/resources'
     | '/volunteer'
@@ -97,6 +107,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/donate'
+    | '/emergency'
     | '/programs'
     | '/resources'
     | '/volunteer'
@@ -106,6 +117,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/contact'
     | '/donate'
+    | '/emergency'
     | '/programs'
     | '/resources'
     | '/volunteer'
@@ -116,6 +128,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ContactRoute: typeof ContactRoute
   DonateRoute: typeof DonateRoute
+  EmergencyRoute: typeof EmergencyRoute
   ProgramsRoute: typeof ProgramsRoute
   ResourcesRoute: typeof ResourcesRoute
   VolunteerRoute: typeof VolunteerRoute
@@ -142,6 +155,13 @@ declare module '@tanstack/react-router' {
       path: '/programs'
       fullPath: '/programs'
       preLoaderRoute: typeof ProgramsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/emergency': {
+      id: '/emergency'
+      path: '/emergency'
+      fullPath: '/emergency'
+      preLoaderRoute: typeof EmergencyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/donate': {
@@ -180,6 +200,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ContactRoute: ContactRoute,
   DonateRoute: DonateRoute,
+  EmergencyRoute: EmergencyRoute,
   ProgramsRoute: ProgramsRoute,
   ResourcesRoute: ResourcesRoute,
   VolunteerRoute: VolunteerRoute,
